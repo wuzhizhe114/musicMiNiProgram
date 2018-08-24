@@ -1,0 +1,14 @@
+/**index.wxss**/
+.weui-cells {
+  margin-top: -2rpx;
+}
+.weui-navbar__item {
+  color: #555;
+}
+.weui-navbar__item.weui-bar__item_on {
+  color:#827f2e;
+}
+.weui-navbar__slider {
+  width: 4.6em;
+  background-color:#827f2e;
+}
