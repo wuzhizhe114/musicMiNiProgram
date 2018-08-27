@@ -9,13 +9,34 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
+    // 搜索
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     inputShowed: false,
     inputVal: "",
+    // tab栏切换
     tabs: ["歌手", "个性推荐", "排行榜", "歌单"],
     activeIndex: 1,
     sliderOffset: 1,
-    sliderLeft: 0
+    sliderLeft: 0,
+    // 图片轮播
+    picSwiper: {
+      imgUrls: [
+        '../../images/slide/gongyuan.png',
+        '../../images/slide/jiangnan.png',
+        '../../images/slide/piaomiao.png',
+        '../../images/slide/xiaoyuan.png',
+        '../../images/slide/yilan.png'
+      ],
+      indicatorDots: true,
+      autoplay: true,
+      interval: 3000,
+      duration: 1000
+    },
+    // 图片放大
+    picPreview: {
+      isShow: true,
+      src: '',
+    }
   },
   showInput: function () {
     this.setData({
@@ -43,6 +64,27 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
+  },
+  preViewPic: function (e) {
+    var that = this;
+    console.log(e.currentTarget.dataset['src'])
+    that.setData({
+      picPreview: {
+        isShow: false,
+        src: e.currentTarget.dataset['src']
+      }
+    })
+  },
+  preViewPicHide: function () {
+    this.setData({
+      picPreview: {
+        isShow: true,
+        src:''
+      }
+    })
+  },
+  demo: function (){
+
   },
   //事件处理函数
   bindViewTap: function() {
