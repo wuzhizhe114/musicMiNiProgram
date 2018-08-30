@@ -32,6 +32,35 @@ Page({
       interval: 3000,
       duration: 1000
     },
+    // 推荐
+    grids: [
+      {
+        text: '私人FM',
+        src: '../../images/fm.png'
+      },
+      {
+        text: '每日歌曲推荐',
+        src: '../../images/tuijian.png'
+      },
+      {
+        text: '云音乐热歌榜',
+        src: '../../images/hot.png'
+      }
+    ],
+    recommendList: [
+      {
+        text: '睡在一片花海里做个美梦吧',
+        src: '../../images/1.png'
+      },
+      {
+        text: '华语｜我是成年人 但还是好想哭',
+        src: '../../images/2.png'
+      },
+      {
+        text: 'KTV麦霸必点歌曲',
+        src: '../../images/3.png'
+      }
+    ],
     // 图片放大
     picPreview: {
       isShow: true,

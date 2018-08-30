@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+  <!-- 搜索框 -->
   <view class="page__bd">
     <view class="weui-search-bar">
       <view class="weui-search-bar__form">
@@ -40,6 +41,7 @@
       </navigator>
     </view>
   </view>
+  <!-- tab栏 -->
   <view class="page__bd">
     <view class="weui-tab">
       <view class="weui-navbar">
@@ -48,15 +50,15 @@
             <view class="weui-navbar__title">{{item}}</view>
           </view>
         </block>
-        <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+        <view class="weui-navbar__slider theme-bg" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
       </view>
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">选项一的内容</view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
-          <swiper indicator-dots="{{picSwiper.indicatorDots}}" autoplay="{{picSwiper.autoplay}}" interval="{{picSwiper.interval}}" duration="{{picSwiper.duration}}" indicator-color="#00ffea" indicator-active-color="#0084ff" circular="true" vertical="true">
+          <swiper indicator-dots="{{picSwiper.indicatorDots}}" autoplay="{{picSwiper.autoplay}}" interval="{{picSwiper.interval}}" duration="{{picSwiper.duration}}" indicator-color="#13d3c3" indicator-active-color="#0084ff" circular="true">
             <block wx:for="{{picSwiper.imgUrls}}" wx:key="*this">
               <swiper-item bindtap="preViewPic" data-src="{{item}}">
-                <image src="{{item}}" class="slide-image"/>
+                <image src="{{item}}" class="slide-image" />
               </swiper-item>
             </block>
           </swiper>
@@ -64,6 +66,32 @@
         <view class="weui-tab__content" hidden="{{activeIndex != 2}}">选项三的内容</view>
         <view class="weui-tab__content" hidden="{{activeIndex != 3}}">选项四的内容</view>
       </view>
+    </view>
+  </view>
+  <!-- 个性推荐 -->
+  <view class="page__bd">
+    <view class="weui-grids">
+      <block wx:for="{{grids}}" wx:key="*this">
+        <navigator url="" class="weui-grid" hover-class="weui-grid_active">
+          <image class="weui-grid__icon" src="{{item.src}}" />
+          <view class="weui-grid__label">{{item.text}}</view>
+        </navigator>
+      </block>
+    </view>
+  </view>
+  <!-- 推荐列表 -->
+  <view class="page__bd">
+    <view class='relist-title clearfix'>
+      <view class='fl'>歌单推荐</view>
+      <view class='fr'>更多 <text class='theme-color'>»</text></view>
+    </view>
+    <view class="recommend-list">
+      <block wx:for="{{recommendList}}" wx:key="*this">
+        <navigator url="" class="re-item" hover-class="weui-grid_active">
+          <image class="re-pic" src="{{item.src}}" />
+          <view class="re-desc">{{item.text}}</view>
+        </navigator>
+      </block>
     </view>
   </view>
   <!-- 图片预览 -->

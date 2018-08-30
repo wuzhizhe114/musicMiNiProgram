@@ -1,23 +1,61 @@
 /**index.wxss**/
+/* 覆盖 wxss 样式 */
+/* 搜索框实时结果盒子 */
 .weui-cells {
   margin-top: -2rpx;
 }
+/* tab 栏 */
 .weui-navbar__item {
   color: #555;
 }
 .weui-navbar__item.weui-bar__item_on {
   color:#827f2e;
 }
+/* tab 栏 选中条 */
 .weui-navbar__slider {
-  width: 4.6em;
-  background-color:#827f2e;
+  width: 6.2em;
+  /* background-color:#827f2e; */
 }
+/* 轮播图 */
 .weui-tab .weui-tab__panel swiper {
   height: 400rpx;
 }
 .weui-tab .weui-tab__panel .slide-image {
   width: 100%;
   height: 100%;
+}
+/* 九宫格 */
+.weui-grid {
+  border-right: none;
+}
+.weui-grid__icon {
+  width: 78rpx;
+  height: 78rpx;
+}
+.weui-grid_active {
+  background-color: #7c7a4033;
+}
+
+
+/* 个性推荐 */
+.weui-grids .weui-grid:first-child .weui-grid__icon {
+  width: 82rpx;
+}
+/* 歌单推荐 */
+.relist-title {
+  padding: 0 10rpx;
+}
+.recommend-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap:wrap;
+}
+.recommend-list .re-item {
+  width: calc((100% - 8px)/3);
+}
+.recommend-list .re-item .re-pic {
+  width: 100%;
+  height: 264rpx;
 }
 
 /* 图片预览 */
