@@ -16,6 +16,9 @@
   width: 6.2em;
   /* background-color:#827f2e; */
 }
+.weui-tab__panel {
+  overflow: hidden;
+}
 /* 轮播图 */
 .weui-tab .weui-tab__panel swiper {
   height: 400rpx;
@@ -37,13 +40,18 @@
 }
 
 
-/* 个性推荐 */
+/* 个性推荐 start */
 .weui-grids .weui-grid:first-child .weui-grid__icon {
   width: 82rpx;
 }
 /* 歌单推荐 */
-.relist-title {
-  padding: 0 10rpx;
+/* .relist-title {
+} */
+.relist-title .fr {
+  font-size: 24rpx;
+}
+.relist-title view {
+  border-bottom: 2px solid #827f2e;
 }
 .recommend-list {
   display: flex;
@@ -52,11 +60,24 @@
 }
 .recommend-list .re-item {
   width: calc((100% - 8px)/3);
+  margin-bottom: 24rpx;
 }
 .recommend-list .re-item .re-pic {
   width: 100%;
   height: 264rpx;
 }
+.recommend-list .re-item .re-desc {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* 个性推荐 end */
+
+/* 歌单 start */
+
+/* 歌单 end */
 
 /* 图片预览 */
 #preView {

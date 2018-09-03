@@ -6,7 +6,6 @@ const sliderWidth = 50
 
 Page({
   data: {
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     // 搜索
@@ -15,7 +14,7 @@ Page({
     inputVal: "",
     // tab栏切换
     tabs: ["歌手", "个性推荐", "排行榜", "歌单"],
-    activeIndex: 1,
+    activeIndex: 3,
     sliderOffset: 1,
     sliderLeft: 0,
     // 图片轮播
@@ -59,14 +58,30 @@ Page({
       {
         text: 'KTV麦霸必点歌曲',
         src: '../../images/3.png'
-      }
+      },
+      {
+        text: '带酒进来听故事',
+        src: '../../images/4.png'
+      },
+      {
+        text: '两字情书：斯人若彩虹 遇上方知有',
+        src: '../../images/5.png'
+      },
+      {
+        text: '邂逅秋意，定格美丽',
+        src: '../../images/6.png'
+      },
     ],
+    // 歌单
+    songListType: [['全部', '语种', '风格', '场景', '情感', '主题'], ['']],
+    songListIndex: [0, 0, 0],
     // 图片放大
     picPreview: {
       isShow: true,
       src: '',
     }
   },
+  // 搜索框 start
   showInput: function () {
     this.setData({
       inputShowed: true
@@ -88,6 +103,7 @@ Page({
       inputVal: e.detail.value
     });
   },
+  // 搜索框 end
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
@@ -112,9 +128,51 @@ Page({
       }
     })
   },
-  demo: function (){
-
+  // 歌单 start
+  bindSongListTypeChange: function (e) {
+    // console.log(e)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      songListIndex: e.detail.value
+    })
+    console.log(this.data.songListIndex)
   },
+  bindSongListTypeColChange: function (e) {
+    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    var data = {
+      songListType: this.data.songListType,
+      songListIndex: this.data.songListIndex
+    };
+    data.songListIndex[e.detail.column] = e.detail.value;
+    switch (e.detail.column) {
+      case 0:
+        switch (data.songListIndex[0]) {
+          case 0:
+            data.songListType[1] = [''];
+            break;
+          case 1:
+            data.songListType[1] = ['华语', '粤语', '日语', '韩语', '欧美', '小语种'];
+            break;
+          case 2:
+            data.songListType[1] = ['流行', '摇滚', '古风', '民谣', '电子', '舞曲', '说唱', '轻音乐', '爵士', '乡村', '古典', '民族', '英伦', '金属', '朋克', '蓝调', '雷鬼', '世界音乐', '拉丁', '后摇'];
+            break;
+          case 3:
+            data.songListType[1] = ['清晨', '夜晚', '学习', '工作', '午休', '下午茶', '地铁', '驾车', '运动', '旅行', '散步', '酒吧']
+            break;
+          case 4:
+            data.songListType[1] = ['怀旧', '清新', '浪漫', '性感', '伤感', '治愈', '放松', '孤独', '感动', '兴奋', '快乐', '安静', '思念']
+            break;
+          case 5:
+            data.songListType[1] = ['影视原声', 'ACG', '儿童', '校园', '游戏', '70后', '80后', '90后', '网络歌曲', 'KTV', '经典', '翻唱', '吉他', '钢琴', '器乐', '榜单', '00后']
+            break;
+        }
+        data.songListIndex[1] = 0;
+        data.songListIndex[2] = 0;
+        break;
+    }
+    this.setData(data);
+  },
+  // 歌单 end
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
