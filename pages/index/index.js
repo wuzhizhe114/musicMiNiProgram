@@ -14,9 +14,15 @@ Page({
     inputVal: "",
     // tab栏切换
     tabs: ["歌手", "个性推荐", "排行榜", "歌单"],
-    activeIndex: 3,
+    activeIndex: 0,
     sliderOffset: 1,
     sliderLeft: 0,
+    // 歌手 start
+    singerLanuageIndex: 0,
+    singerLanuageList:['全部','华语','欧美','日本','韩国','其他'],
+    // 歌手 end
+
+    // 个性推荐 start
     // 图片轮播
     picSwiper: {
       imgUrls: [
@@ -72,9 +78,85 @@ Page({
         src: '../../images/6.png'
       },
     ],
-    // 歌单
+    // 个性推荐 end
+    // 歌单 start
     songListType: [['全部', '语种', '风格', '场景', '情感', '主题'], ['']],
-    songListIndex: [0, 0, 0],
+    songListIndex: [0, 0],
+    songList: [
+      {
+        text: '睡在一片花海里做个美梦吧',
+        src: '../../images/1.png'
+      },
+      {
+        text: '华语｜我是成年人 但还是好想哭',
+        src: '../../images/2.png'
+      },
+      {
+        text: 'KTV麦霸必点歌曲',
+        src: '../../images/3.png'
+      },
+      {
+        text: '带酒进来听故事',
+        src: '../../images/4.png'
+      },
+      {
+        text: '两字情书：斯人若彩虹 遇上方知有',
+        src: '../../images/5.png'
+      },
+      {
+        text: '邂逅秋意，定格美丽',
+        src: '../../images/6.png'
+      },
+      {
+        text: '带酒进来听故事',
+        src: '../../images/1.png'
+      },
+      {
+        text: '两字情书：斯人若彩虹 遇上方知有',
+        src: '../../images/2.png'
+      },
+      {
+        text: '邂逅秋意，定格美丽',
+        src: '../../images/3.png'
+      },
+      {
+        text: '带酒进来听故事',
+        src: '../../images/4.png'
+      },
+      {
+        text: '两字情书：斯人若彩虹 遇上方知有',
+        src: '../../images/5.png'
+      },
+      {
+        text: '邂逅秋意，定格美丽',
+        src: '../../images/6.png'
+      }
+    ],
+    songListRecomIndex: null,
+    songListRecomList: [
+      {
+        text: '华语',
+        pos:[1,0]
+      },
+      {
+        text: '粤语',
+        pos:[1,1]
+      },
+      {
+        text: '摇滚',
+        pos:[2,1]
+      },
+      {
+        text: '轻音乐',
+        pos:[2,7]
+      },
+      {
+        text: '流行',
+        pos:[2,0]
+      },
+    ],
+    // songListRecomList: ['华语', '粤语', '摇滚', '轻音乐', '流行'],
+    // 歌单 end
     // 图片放大
     picPreview: {
       isShow: true,
@@ -105,29 +187,45 @@ Page({
   },
   // 搜索框 end
   tabClick: function (e) {
+    // console.log(e.currentTarget)
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
   },
-  preViewPic: function (e) {
-    var that = this;
-    console.log(e.currentTarget.dataset['src'])
-    that.setData({
-      picPreview: {
-        isShow: false,
-        src: e.currentTarget.dataset['src']
-      }
-    })
+  // 歌手 start
+  // 筛选 切换选择
+  filterSwitchClick: function(e){
+    // console.log(e.currentTarget)
+    var obj = {};
+    // 根据类型变更索引
+    switch (e.currentTarget.dataset['type']){
+      case 'singerLan':
+        obj['singerLanuageIndex'] = e.currentTarget.dataset['id'];
+        break;
+      case 'slRecomm':
+        obj['songListRecomIndex'] = e.currentTarget.dataset['id'];
+        // obj['songListIndex'] = e.currentTarget.dataset['pos']
+        var target = {
+          detail:{
+            column: 0,
+            value: e.currentTarget.dataset['pos'][0]
+          }
+        }
+        this.bindSongListTypeColChange(target)
+        target = {
+          detail:{
+            column: 1,
+            value: e.currentTarget.dataset['pos'][1]
+          }
+        }
+        this.bindSongListTypeColChange(target)
+        break;
+    }
+    this.setData(obj);
   },
-  preViewPicHide: function () {
-    this.setData({
-      picPreview: {
-        isShow: true,
-        src:''
-      }
-    })
-  },
+  // 歌手 end
+
   // 歌单 start
   bindSongListTypeChange: function (e) {
     // console.log(e)
@@ -138,6 +236,7 @@ Page({
     console.log(this.data.songListIndex)
   },
   bindSongListTypeColChange: function (e) {
+    console.log(e);
     console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     var data = {
       songListType: this.data.songListType,
@@ -173,6 +272,24 @@ Page({
     this.setData(data);
   },
   // 歌单 end
+  preViewPic: function (e) {
+    var that = this;
+    console.log(e.currentTarget.dataset['src'])
+    that.setData({
+      picPreview: {
+        isShow: false,
+        src: e.currentTarget.dataset['src']
+      }
+    })
+  },
+  preViewPicHide: function () {
+    this.setData({
+      picPreview: {
+        isShow: true,
+        src: ''
+      }
+    })
+  },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({

@@ -7,6 +7,9 @@
 .theme-bg {
   background-color: #827f2e;
 }
+.theme-bg-light {
+  background-color: #a8a546;
+}
 
 .fl {
   float: left;
@@ -16,6 +19,9 @@
 }
 .pd-20 {
   padding: 20rpx 10rpx;
+}
+.md-20 {
+  margin-bottom: 20rpx;
 }
 .clearfix::after {
   content: '.';

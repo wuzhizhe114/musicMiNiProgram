@@ -16,9 +16,13 @@
   width: 6.2em;
   /* background-color:#827f2e; */
 }
+/* tab 栏 内容面板 */
 .weui-tab__panel {
   overflow: hidden;
 }
+/* .weui-tab__panel .weui-tab__content {
+  font-size: 24rpx;
+} */
 /* 轮播图 */
 .weui-tab .weui-tab__panel swiper {
   height: 400rpx;
@@ -45,38 +49,69 @@
   width: 82rpx;
 }
 /* 歌单推荐 */
-/* .relist-title {
-} */
-.relist-title .fr {
-  font-size: 24rpx;
-}
 .relist-title view {
   border-bottom: 2px solid #827f2e;
 }
-.recommend-list {
+.recommend-list ,
+.songl-list {
   display: flex;
   justify-content: space-between;
   flex-wrap:wrap;
 }
-.recommend-list .re-item {
+.recommend-list .re-item ,
+.songl-list .sl-item {
   width: calc((100% - 8px)/3);
   margin-bottom: 24rpx;
 }
-.recommend-list .re-item .re-pic {
+.recommend-list .re-item .re-pic,
+.songl-list .sl-item .sl-pic {
   width: 100%;
   height: 264rpx;
 }
-.recommend-list .re-item .re-desc {
+.recommend-list .re-item .re-desc ,
+.songl-list .sl-item .sl-desc {
   white-space: nowrap;
   text-overflow: ellipsis;
   -ms-text-overflow: ellipsis;
   -o-text-overflow: ellipsis;
   overflow: hidden;
+  padding: 0 8rpx;
+  font-size: 24rpx;
 }
 /* 个性推荐 end */
 
 /* 歌单 start */
-
+.song-list .picker-con {
+  padding: 0 10rpx;
+  color: #fff;
+  border-radius: 6rpx;
+}
+.sl-recommon {
+  margin-right: 16rpx;
+}
+.sl-recommon .item {
+  float: left;
+  position: relative;
+  margin-left: 16rpx;
+  padding-left: 16rpx;
+}
+.sl-recommon .item::before {
+  content: '';
+  position: absolute;
+  width: 4rpx;
+  height: 22rpx;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #827f2e;
+}
+.sl-recommon .item:first-child {
+  margin-left: 0;
+  padding-left: 0;
+}
+.sl-recommon .item:first-child::before {
+  display: none;
+}
 /* 歌单 end */
 
 /* 图片预览 */
