@@ -14,12 +14,53 @@ Page({
     inputVal: "",
     // tab栏切换
     tabs: ["歌手", "个性推荐", "排行榜", "歌单"],
-    activeIndex: 0,
+    activeIndex: 2,
     sliderOffset: 1,
     sliderLeft: 0,
     // 歌手 start
-    singerLanuageIndex: 0,
+    singerLanuageIndex: 0, // 语种
     singerLanuageList:['全部','华语','欧美','日本','韩国','其他'],
+    singerList:[
+      {
+        src:'../../images/singer1.jpg',
+        text:'G.E.M.邓紫棋'
+      },
+      {
+        src:'../../images/singer2.jpg',
+        text:'林俊杰'
+      },
+      {
+        src:'../../images/singer3.jpg',
+        text:'薛之谦'
+      },
+      {
+        src:'../../images/singer1.jpg',
+        text:'G.E.M.邓紫棋'
+      },
+      {
+        src:'../../images/singer2.jpg',
+        text:'林俊杰'
+      },
+      {
+        src:'../../images/singer3.jpg',
+        text:'薛之谦'
+      },
+      {
+        src:'../../images/singer1.jpg',
+        text:'G.E.M.邓紫棋'
+      },
+      {
+        src:'../../images/singer2.jpg',
+        text:'林俊杰'
+      },
+      {
+        src:'../../images/singer3.jpg',
+        text:'薛之谦'
+      }
+    ],
+    // 分类
+    singerSortIndex: 0,
+    singerSortList:['全部','男歌手','女歌手','乐队组合'],
     // 歌手 end
 
     // 个性推荐 start
@@ -192,6 +233,13 @@ Page({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
+    // if(e.currentTarget.id == 2){
+    //   wx.showToast({
+    //     title: '待完善',
+    //     icon: 'none',
+    //     duration: 2000
+    //   });
+    // }
   },
   // 歌手 start
   // 筛选 切换选择
@@ -200,9 +248,15 @@ Page({
     var obj = {};
     // 根据类型变更索引
     switch (e.currentTarget.dataset['type']){
+      // 歌手 语种筛选项
       case 'singerLan':
         obj['singerLanuageIndex'] = e.currentTarget.dataset['id'];
         break;
+      // 歌手 分类筛选项
+      case 'singerSort':
+        obj['singerSortIndex'] = e.currentTarget.dataset['id'];
+        break;
+      // 歌单 类型推荐项
       case 'slRecomm':
         obj['songListRecomIndex'] = e.currentTarget.dataset['id'];
         // obj['songListIndex'] = e.currentTarget.dataset['pos']
@@ -230,10 +284,21 @@ Page({
   bindSongListTypeChange: function (e) {
     // console.log(e)
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    var recommIndex = null;
+    // console.log(this.data.songListRecomList)
+    this.data.songListRecomList.forEach(function(item,i){
+      if(item.pos.join('') === e.detail.value.join('')){
+        recommIndex = i;
+      }
+      else {
+        
+      }
+    });
     this.setData({
-      songListIndex: e.detail.value
+      songListIndex: e.detail.value,
+      songListRecomIndex: recommIndex
     })
-    console.log(this.data.songListIndex)
+    // console.log(this.data.songListRecomIndex)
   },
   bindSongListTypeColChange: function (e) {
     console.log(e);
@@ -272,6 +337,7 @@ Page({
     this.setData(data);
   },
   // 歌单 end
+  // 图片预览 start
   preViewPic: function (e) {
     var that = this;
     console.log(e.currentTarget.dataset['src'])
@@ -290,6 +356,7 @@ Page({
       }
     })
   },
+  // 图片预览 end
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({

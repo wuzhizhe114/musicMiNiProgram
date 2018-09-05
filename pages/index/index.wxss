@@ -52,7 +52,7 @@
 .relist-title view {
   border-bottom: 2px solid #827f2e;
 }
-.recommend-list ,
+/* .recommend-list ,
 .songl-list {
   display: flex;
   justify-content: space-between;
@@ -77,7 +77,7 @@
   overflow: hidden;
   padding: 0 8rpx;
   font-size: 24rpx;
-}
+} */
 /* 个性推荐 end */
 
 /* 歌单 start */

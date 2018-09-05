@@ -55,16 +55,32 @@
       <view class="weui-tab__panel">
         <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
           <!-- 歌手 -->
-          <view class="section clearfix pd-20">
-            <text class='fl'>语种：</text>
-            <view class='sl-recommon fl'>
-              <view class='item {{singerLanuageIndex == index ? "theme-color" : ""}}' data-id="{{index}}" wx:for="{{singerLanuageList}}" wx:key="*this" data-type="singerLan" bindtap='filterSwitchClick'>{{item}}</view>
-              <!-- <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>华语</view>
-              <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>欧美</view>
-              <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>日本</view>
-              <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>韩国</view>
-              <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>其他</view> -->
+          <view class="section pd-20 mb-20">
+            <view class='clearfix mb-10'>
+              <text class='fl'>语种：</text>
+              <view class='sl-recommon fl'>
+                <view class='item {{singerLanuageIndex == index ? "theme-color" : ""}}' data-id="{{index}}" wx:for="{{singerLanuageList}}" wx:key="*this" data-type="singerLan" bindtap='filterSwitchClick'>{{item}}</view>
+                <!-- <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>华语</view>
+                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>欧美</view>
+                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>日本</view>
+                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>韩国</view>
+                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>其他</view> -->
+              </view>
             </view>
+            <view class='clearfix'>
+              <text class='fl'>分类：</text>
+              <view class='sl-recommon fl'>
+                <view class='item {{singerSortIndex == index ? "theme-color" : ""}}' data-id="{{index}}" wx:for="{{singerSortList}}" wx:key="*this" data-type="singerSort" bindtap='filterSwitchClick'>{{item}}</view>
+              </view>
+            </view>
+          </view>
+          <view class="flex-list-3">
+            <block wx:for="{{singerList}}" wx:key="*this">
+              <navigator url="" class="item" hover-class="weui-grid_active">
+                <image class="i-pic" src="{{item.src}}" />
+                <view class="i-desc">{{item.text}}</view>
+              </navigator>
+            </block>
           </view>
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
@@ -91,11 +107,11 @@
               <text class='theme-color'>»</text>
             </view>
           </view>
-          <view class="recommend-list">
+          <view class="flex-list-3">
             <block wx:for="{{recommendList}}" wx:key="*this">
-              <navigator url="" class="re-item" hover-class="weui-grid_active">
-                <image class="re-pic" src="{{item.src}}" />
-                <view class="re-desc">{{item.text}}</view>
+              <navigator url="" class="item" hover-class="weui-grid_active">
+                <image class="i-pic" src="{{item.src}}" />
+                <view class="i-desc">{{item.text}}</view>
               </navigator>
             </block>
           </view>
@@ -105,7 +121,7 @@
         </view>
         <view class="weui-tab__content song-list" hidden="{{activeIndex != 3}}">
           <!-- 歌单 -->
-          <view class="section clearfix pd-20 md-20">
+          <view class="section clearfix pd-20 mb-20">
             <picker mode="multiSelector" class='fl' bindchange="bindSongListTypeChange" bindcolumnchange="bindSongListTypeColChange" value="{{songListIndex}}" range="{{songListType}}">
               <view class="picker">
                 <text class='fl'>类型：</text>
@@ -124,11 +140,11 @@
               <view class='item' hover-class="theme-color">流行</view> -->
             </view>
           </view>
-          <view class="songl-list">
+          <view class="flex-list-3">
             <block wx:for="{{songList}}" wx:key="*this">
-              <navigator url="" class="sl-item" hover-class="weui-grid_active">
-                <image class="sl-pic" src="{{item.src}}" />
-                <view class="sl-desc">{{item.text}}</view>
+              <navigator url="" class="item" hover-class="weui-grid_active">
+                <image class="i-pic" src="{{item.src}}" />
+                <view class="i-desc">{{item.text}}</view>
               </navigator>
             </block>
           </view>
