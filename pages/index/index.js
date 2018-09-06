@@ -120,6 +120,12 @@ Page({
       },
     ],
     // 个性推荐 end
+
+    // 排行榜 start 
+    rankingTypeIndex: 0,
+    rankingTypeList: ['音乐新歌榜','音乐热歌榜','易原创歌曲榜','音乐飙升榜','音乐电音榜','排行榜周榜','国Billboard周榜','V嗨榜','unes榜','Hit FM Top榜','日本Oricon周榜','韩国Melon排行榜周榜','韩国Mnet排行榜周榜','韩国Melon原声周榜','中国TOP排行榜(港台榜)','中国TOP排行榜(内地榜)','香港电台中文歌曲龙虎榜','华语金曲榜','中国嘻哈榜','法国 NRJ EuroHot 30周榜','台湾Hito排行榜','eatport全球电子舞曲榜','云音乐ACG音乐榜','云音乐嘻哈榜'],
+    // 排行榜 end 
+
     // 歌单 start
     songListType: [['全部', '语种', '风格', '场景', '情感', '主题'], ['']],
     songListIndex: [0, 0],
@@ -196,7 +202,6 @@ Page({
         pos:[2,0]
       },
     ],
-    // songListRecomList: ['华语', '粤语', '摇滚', '轻音乐', '流行'],
     // 歌单 end
     // 图片放大
     picPreview: {
@@ -279,6 +284,15 @@ Page({
     this.setData(obj);
   },
   // 歌手 end
+
+  // 排行榜 start
+  bindRankingTypeChange: function (e){
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      rankingTypeIndex: e.detail.value,
+    })
+  },
+  // 排行榜 end
 
   // 歌单 start
   bindSongListTypeChange: function (e) {

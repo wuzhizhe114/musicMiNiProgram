@@ -118,6 +118,12 @@
         </view>
         <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
           <!-- 排行榜 -->
+          <picker bindchange="bindRankingTypeChange" value="{{rankingTypeIndex}}" range="{{rankingTypeList}}">
+            <view class="picker pd-20">
+              排行类别：
+              <text class='picker-con theme-bg'>{{rankingTypeList[rankingTypeIndex]}}</text>
+            </view>
+          </picker>
         </view>
         <view class="weui-tab__content song-list" hidden="{{activeIndex != 3}}">
           <!-- 歌单 -->

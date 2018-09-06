@@ -81,14 +81,14 @@
 /* 个性推荐 end */
 
 /* 歌单 start */
-.song-list .picker-con {
-  padding: 0 10rpx;
+.picker-con {
+  padding: 4rpx 12rpx;
   color: #fff;
   border-radius: 6rpx;
 }
-.sl-recommon {
+/* .sl-recommon {
   margin-right: 16rpx;
-}
+} */
 .sl-recommon .item {
   float: left;
   position: relative;
