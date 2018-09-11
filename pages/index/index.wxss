@@ -43,7 +43,6 @@
   background-color: #7c7a4033;
 }
 
-
 /* 个性推荐 start */
 .weui-grids .weui-grid:first-child .weui-grid__icon {
   width: 82rpx;

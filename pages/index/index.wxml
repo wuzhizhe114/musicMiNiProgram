@@ -60,25 +60,20 @@
               <text class='fl'>语种：</text>
               <view class='sl-recommon fl'>
                 <view class='item {{singerLanuageIndex == index ? "theme-color" : ""}}' data-id="{{index}}" wx:for="{{singerLanuageList}}" wx:key="*this" data-type="singerLan" bindtap='filterSwitchClick'>{{item}}</view>
-                <!-- <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>华语</view>
-                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>欧美</view>
-                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>日本</view>
-                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>韩国</view>
-                <view class='item' hover-class="theme-color" bindtap='singerLanguageClick'>其他</view> -->
               </view>
             </view>
             <view class='clearfix'>
               <text class='fl'>分类：</text>
               <view class='sl-recommon fl'>
-                <view class='item {{singerSortIndex == index ? "theme-color" : ""}}' data-id="{{index}}" wx:for="{{singerSortList}}" wx:key="*this" data-type="singerSort" bindtap='filterSwitchClick'>{{item}}</view>
+                <view class='item {{singerSortIndex == index ? "theme-color" : ""}}' data-id="{{index}}" wx:for="{{singerSortList}}" wx:key="*this" data-type="singerSort" data-no="{{item.no}}" bindtap='filterSwitchClick'>{{item.text}}</view>
               </view>
             </view>
           </view>
           <view class="flex-list-3">
             <block wx:for="{{singerList}}" wx:key="*this">
               <navigator url="" class="item" hover-class="weui-grid_active">
-                <image class="i-pic" src="{{item.src}}" />
-                <view class="i-desc">{{item.text}}</view>
+                <image class="i-pic" src="{{item.img1v1Url}}" />
+                <view class="i-desc">{{item.name}}</view>
               </navigator>
             </block>
           </view>
@@ -110,8 +105,8 @@
           <view class="flex-list-3">
             <block wx:for="{{recommendList}}" wx:key="*this">
               <navigator url="" class="item" hover-class="weui-grid_active">
-                <image class="i-pic" src="{{item.src}}" />
-                <view class="i-desc">{{item.text}}</view>
+                <image class="i-pic" src="{{item.picUrl}}" />
+                <view class="i-desc">{{item.name}}</view>
               </navigator>
             </block>
           </view>
@@ -124,6 +119,29 @@
               <text class='picker-con theme-bg'>{{rankingTypeList[rankingTypeIndex]}}</text>
             </view>
           </picker>
+          <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">{{rankingTitle}}</view>
+            <view class="weui-panel__bd">
+              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{rankingList}}" wx:key="*this">
+                <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                  <image class="weui-media-box__thumb" src="{{item.al.picUrl}}" />
+                </view>
+                <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                  <view class="weui-media-box__title">{{item.name}}{{item.alia.length != 0 ? '('+item.alia[0]+')' : ''}}</view>
+                  <view class="weui-media-box__desc">
+                    <text class='fl w-35'>时长：{{item.duration}}</text>
+                    <text class='fr w-65 t-ellipsis t-a-r'>歌手：{{item.ar.length >= 2 ? item.ar[0].name+'/'+item.ar[1].name : item.ar[0].name}}</text>
+                  </view>
+                </view>
+              </navigator>
+            </view>
+            <!-- <view class="weui-panel__ft">
+              <view class="weui-cell weui-cell_access weui-cell_link">
+                <view class="weui-cell__bd">查看更多</view>
+                <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+              </view>
+            </view> -->
+          </view>
         </view>
         <view class="weui-tab__content song-list" hidden="{{activeIndex != 3}}">
           <!-- 歌单 -->
@@ -139,18 +157,14 @@
               </view>
             </picker>
             <view class='sl-recommon fr'>
-              <view class='item {{songListRecomIndex == index ? "theme-color" : ""}}' wx:for="{{songListRecomList}}" wx:key="*this" data-id="{{index}}" data-type="slRecomm" data-pos="{{item.pos}}" bindtap='filterSwitchClick'>{{item.text}}</view>
-              <!-- <view class='item' hover-class="theme-color">粤语</view>
-              <view class='item' hover-class="theme-color">摇滚</view>
-              <view class='item' hover-class="theme-color">轻音乐</view>
-              <view class='item' hover-class="theme-color">流行</view> -->
+              <view class='item {{songListRecomIndex == index ? "theme-color" : ""}}' wx:for="{{songListRecomList}}" wx:key="*this" data-id="{{index}}" data-type="slRecomm" data-pos="{{item.pos}}" data-text="{{item.text}}" bindtap='filterSwitchClick'>{{item.text}}</view>
             </view>
           </view>
           <view class="flex-list-3">
             <block wx:for="{{songList}}" wx:key="*this">
               <navigator url="" class="item" hover-class="weui-grid_active">
-                <image class="i-pic" src="{{item.src}}" />
-                <view class="i-desc">{{item.text}}</view>
+                <image class="i-pic" src="{{item.coverImgUrl}}" />
+                <view class="i-desc">{{item.name}}</view>
               </navigator>
             </block>
           </view>
@@ -158,8 +172,16 @@
       </view>
     </view>
   </view>
+
+  <view class="weui-loadmore weui-loadmore_line">
+    <view class="weui-loadmore__tips weui-loadmore__tips_in-line">已到底</view>
+  </view>
   <!-- 图片预览 -->
   <view id='preView' hidden='{{picPreview.isShow}}' bindtap="preViewPicHide">
     <image src='{{picPreview.src}}'></image>
   </view>
+</view>
+
+<view class='go-top' hidden='{{isShowGoTop}}'>
+  <icon type='download' size='26' color='{{goTopBg}}' bindtap='goTop'></icon>
 </view>

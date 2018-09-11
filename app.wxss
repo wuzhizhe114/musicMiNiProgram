@@ -19,6 +19,7 @@
 }
 .pd-20 {
   padding: 20rpx 10rpx;
+  font-size: 28rpx;
 }
 .mb-10 {
   margin-bottom: 10rpx;
@@ -26,6 +27,23 @@
 .mb-20 {
   margin-bottom: 20rpx;
 }
+.w-35 {
+  width: 35%;
+}
+.w-65 {
+  width: 65%;
+}
+.t-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+.t-a-r {
+  text-align: right;
+}
+
 .clearfix::after {
   content: '.';
   display: block;
@@ -68,4 +86,20 @@
   box-sizing: border-box;
   color: #555;
   font-size: 28rpx;
-} 
+}
+
+/* 返回顶部 */
+.go-top {
+  position: fixed;
+  bottom: 100rpx;
+  right: 20rpx;
+  transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  z-index: 99;
+}
+.go-top icon {
+  border-radius: 50%;
+  background-color: #fff;
+}

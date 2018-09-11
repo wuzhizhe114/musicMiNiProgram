@@ -14,6 +14,14 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const formatSongDuration = hm => {
+  const m = parseInt(hm / 1000 / 60) > 9 ? parseInt(hm / 1000 / 60) : '0' + parseInt(hm / 1000 / 60)
+  const s = parseInt(hm / 1000 % 60) > 9 ? parseInt(hm / 1000 % 60) : '0' + parseInt(hm / 1000 % 60)
+
+  return m+':'+s
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  formatSongDuration
 }
